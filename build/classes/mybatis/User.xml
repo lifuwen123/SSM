@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.laoli.dao.IUserDao">
+<!-- User对应的角色map -->
+<resultMap type="user" id="user_role">
+<id column="id" property="id"></id>
+<result column="username" property="username"></result>
+<result column="birthday" property="birthday"></result>
+<result column="sex" property="sex"></result>
+<result column="address" property="address"></result>
+<collection property="role" ofType="role">
+<result column="rolename" property="rolename"></result>
+</collection>
+</resultMap>
+
+
+			<!-- 查询所有用户 -->
+	<select id="findAll" resultMap="user_role">
+		select u.*,r.rolename from user u left join role r on u.id=r.uid
+		
+	</select>
+			<!-- 通过用户id查询 -->
+	
+	<select id="findById" parameterType="int" resultType="user">
+		select * from user where id=#{id}
+	</select>
+			<!-- 通过用户名查询 -->
+	<select id="findByName" resultType="user" parameterType="String">
+		select * from user where username=#{username}
+	</select>
+	
+			<!-- 保存用户 -->
+	<insert id="save" parameterType="user">
+		insert into user (username,birthday,sex,address,password,phone) values(#{username},#{birthday},#{sex},#{address},#{password},#{phone})
+	</insert>
+	
+			<!-- 删除用户 -->
+	<delete id="delete" parameterType="int">
+		delete from user where id=#{id}
+	</delete>
+	
+			<!-- 批量删除用户 -->
+	<delete id="deleteLot" parameterType="int">
+		delete from user where id in 
+		<foreach collection="ids" item="id" open="(" close=")" separator=",">
+			#{id}
+		</foreach>
+	</delete>
+	
+			<!-- 修改用户 -->
+	<update id="update" parameterType="user">
+		update user set username=#{username},sex=#{sex},birthday=#{birthday},address=#{address} where id=#{id}
+	</update>
+	
+			<!-- 修改用户密码 -->
+	<update id="chpassword" parameterType="user">
+		update user set username=#{username},sex=#{sex},birthday=#{birthday},address=#{address},password=#{password} where id=#{id}
+	</update>
+	
+			<!-- 查询所有商品 -->
+	<select id="AllByPage" resultType="product" parameterType="Map">
+		select * from product limit #{start},#{size}
+	</select>
+			<!-- 查询所有商品条数 -->
+	<select id="selectCount" resultType="int">
+		select count(*) from product
+	</select>
+			<!-- 模糊查询 -->
+	<select id="findByUnclare" resultType="user" parameterType="String">
+		<if test="name!=null and name!=''">
+		select * from user where username like #{name}
+		</if>
+	</select>
+	
+			<!-- 保存日志操作 -->
+	<insert id="saveLog" parameterType="VisitLog">
+		insert into visitlog(sttime,username,ip,computerName,time) values(
+		#{sttime},#{username},#{ip},#{computerName},#{time})
+	</insert>
+	
+			<!-- 查找日志 -->
+	<select id="findSysLog" resultType="VisitLog">
+		select * from visitlog
+	</select>
+			<!-- 删除某个日志 -->
+	<delete id="deleteLog" parameterType="int">
+		delete from visitlog where id=#{id}
+	</delete>
+</mapper>

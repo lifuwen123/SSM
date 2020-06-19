@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+	http://www.springframework.org/schema/beans/spring-beans.xsd
+	http://www.springframework.org/schema/context
+	http://www.springframework.org/schema/context/spring-context.xsd
+	http://www.springframework.org/schema/aop
+	http://www.springframework.org/schema/aop/spring-aop.xsd
+	http://www.springframework.org/schema/tx 
+	http://www.springframework.org/schema/tx/spring-tx.xsd">
+
+<!-- 扫描包 -->
+<context:component-scan base-package="com.laoli">
+	<context:exclude-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
+</context:component-scan>
+<!--  Spring整合MyBatis框架 -->
+
+<!-- 加载配数据源配置文件 db.properties -->
+<context:property-placeholder location="classpath:db.properties"></context:property-placeholder>
+
+
+<!-- 配置连接池对象 -->
+
+
+<bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource">
+		<property name="driverClass" value="${datasource.connection.driver_class}"/>
+		<property name="jdbcUrl" value="${datasource.connection.url}"/>
+		<property name="user" value="${datasource.connection.username}"/>
+		<property name="password" value="${datasource.connection.password}"/>
+</bean>
+
+
+<!-- 配置SqlSession的工厂 -->
+<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+							<!-- 注入数据源 -->
+	<property name="dataSource" ref="dataSource"></property>
+							<!-- 配置别名 -->
+	<property name="typeAliasesPackage" value="com.laoli.model"></property>
+						<!-- 扫描映射文件 -->
+	<property name="mapperLocations" value="classpath:mybatis/*.xml"></property>
+	
+						<!-- 传入PageHelper的插件 -->
+   		<property name="plugins">
+   			<array>
+   				<!-- 传入插件的对象 -->
+   				<bean class="com.github.pagehelper.PageInterceptor">
+   					<property name="properties">
+   						<props>
+   							<prop key="helperDialect">mysql</prop>
+   							<prop key="reasonable">true</prop>
+   						</props>
+   					</property>
+   				</bean>
+   			</array>
+   		</property>
+</bean>
+<!-- 配置扫描dao的包 动态实现 dao 接口，注入到 spring 容器中-->
+
+<bean id="mapperScanner" class="org.mybatis.spring.mapper.MapperScannerConfigurer">			
+	<property name="basePackage" value="com.laoli.dao"></property>
+</bean>
+
+
+
+<!-- 配置Spring的声明式事务管理 -->
+    <!-- 配置事务管理器 -->
+    <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+        <property name="dataSource" ref="dataSource"/>
+    </bean>
+
+    <tx:annotation-driven transaction-manager="transactionManager"/>
+</beans>
