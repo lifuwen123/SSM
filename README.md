@@ -1,2 +1,2 @@
 # SSM
-一个简单的ssm案列
+一个由bootstrap搭建的ssm案列
