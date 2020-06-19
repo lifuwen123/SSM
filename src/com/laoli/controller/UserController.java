@@ -242,11 +242,11 @@ public class UserController {
 	 * 
 	 * */
 	@RequestMapping("/findName")
-	public String info(Model model,String name) {
-		if(name!=null&&name!="") {
+	public String info(Model model,String name,String birthday) {
+		if((name!=null&&name!="")||(birthday!=null&&birthday!="")){
 		String uname="%"+name+"%";
 		System.out.println(uname);
-		List<User> comuser=service.findByUnclare(uname);
+		List<User> comuser=service.findByUnclare(uname,birthday);
 		if(!comuser.isEmpty()) {
 			model.addAttribute("comuser", comuser);
 			return "info";
@@ -338,6 +338,7 @@ public class UserController {
 			model.addAttribute("no", "验证未通过");
 			return "forget";
 		}
+		service.forget(u4);
 		model.addAttribute("user", u4);
 		return "pass";
 	}

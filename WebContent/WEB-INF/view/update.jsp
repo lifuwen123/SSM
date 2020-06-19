@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+<title>修改用户</title>
 <%@include file="common.jsp"%>
 
 <script type="text/javascript">

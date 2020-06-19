@@ -69,9 +69,14 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 			<!-- 模糊查询 -->
 	<select id="findByUnclare" resultType="user" parameterType="String">
+		select * from user where 1=1 
 		<if test="name!=null and name!=''">
-		select * from user where username like #{name}
+		and username like #{name} 
 		</if>
+		<if test="birthday!=null and birthday!=''">
+		and birthday = #{birthday}
+		</if>
+		
 	</select>
 	
 			<!-- 保存日志操作 -->

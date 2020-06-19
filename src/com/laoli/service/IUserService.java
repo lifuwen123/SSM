@@ -32,11 +32,13 @@ public interface IUserService {
 		//查询商品条数
 		int selectCount();
 		//模糊查询
-		List<User> findByUnclare(String uname);
+		List<User> findByUnclare(String uname,String birthday);
 		//保存日志
 		void saveLog(VisitLog visitLog);
 		//查找日志
 		List<VisitLog> findSysLog();
 		//删除某个日志
 		void deleteLog(int id);
+		//查找密码
+		void forget(User user);
 }

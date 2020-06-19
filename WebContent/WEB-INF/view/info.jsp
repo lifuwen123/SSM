@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>日志信息</title>
+<title>用户查询信息</title>
 <script type="text/javascript">
 	function dele(id) {
 		var flag=confirm("你确定要删除id为"+id+"用户吗");

@@ -13,6 +13,7 @@ import com.laoli.model.Product;
 import com.laoli.model.VisitLog;
 import com.laoli.model.User;
 import com.laoli.service.IUserService;
+import com.laoli.utils.SendJMail;
 @Service
 public class IUserServiceImpl implements IUserService{
 	@Autowired
@@ -25,38 +26,50 @@ public class IUserServiceImpl implements IUserService{
 		PageHelper.startPage(currPage, size);
 		return dao.findAll();
 	}
-
+	/*
+	 * 添加用户
+	 * */
 	@Override
 	public void save(User user) {
 		// TODO Auto-generated method stub
 		
 		dao.save(user);
 	}
-
+	/*
+	 * 根据用户名查找用户
+	 * */
 	@Override
 	public User findByName(String username) {
 		// TODO Auto-generated method stub
 		return dao.findByName(username);
 	}
-
+	/*
+	 * 删除用户
+	 * */
 	@Override
 	public void delete(Integer id) {
 		// TODO Auto-generated method stub
 		dao.delete(id);
 	}
-
+	/*
+	 * 修改用户
+	 * */
 	@Override
 	public void update(User user) {
 		// TODO Auto-generated method stub
 		dao.update(user);
 	}
-
+	/*
+	 * 根据id查询用户
+	 * */
 	@Override
 	public User findById(Integer id) {
 		// TODO Auto-generated method stub
 		return dao.findById(id);
 	}
-
+	/*
+	 * 登录用户
+	 * */
 	@Override
 	public User login(String username) {
 		// TODO Auto-generated method stub
@@ -66,40 +79,53 @@ public class IUserServiceImpl implements IUserService{
 		}
 		return null;
 	}
-
+	/*
+	 * 修改密码
+	 * */
 	@Override
 	public void chpassword(User user) {
 		// TODO Auto-generated method stub
 		dao.chpassword(user);
 	}
+	/*
+	 * 模糊查询
+	 * */
 	@Override
-	public List<User> findByUnclare(String uname) {
+	public List<User> findByUnclare(String uname,String birthday) {
 		// TODO Auto-generated method stub
-		List<User> user=dao.findByUnclare(uname);
+		List<User> user=dao.findByUnclare(uname,birthday);
 		
 		if(user!=null) {
 			return user;
 		}
 		return null;
 	}
-
+	/*
+	 * 添加日志
+	 * */
 	public void saveLog(VisitLog visitLog) {
 		// TODO Auto-generated method stub
 		dao.saveLog(visitLog);
 	}
-
+	/*
+	 * 查询日志
+	 * */
 	@Override
 	public List<VisitLog> findSysLog() {
 		// TODO Auto-generated method stub
 		return dao.findSysLog();
 	}
-
+	/*
+	 * 删除日志
+	 * */
 	@Override
 	public void deleteLog(int id) {
 		// TODO Auto-generated method stub
 		dao.deleteLog(id);
 	}
-
+	/*
+	 * 查询商品
+	 * */
 	@Override
 	public PageBean<Product> AllByPage(int currPage) {
 		// TODO Auto-generated method stub
@@ -123,17 +149,28 @@ public class IUserServiceImpl implements IUserService{
 		page.setLists(lists);
 		return page;
 	}
-
+	/*
+	 * 未实现
+	 * */
 	@Override
 	public int selectCount() {
 		// TODO Auto-generated method stub
 		return 0;
 	}
-
+	/*
+	 * 未实现
+	 * */
 	@Override
 	public void deleteLot(Integer[] ids) {
 		// TODO Auto-generated method stub
 		
+	}
+	@Override
+	public void forget(User user) {
+		// TODO Auto-generated method stub
+		String link="http://localhost:8080/SSM/login";
+		String html="欢迎用户"+user.getUsername()+"找回密码，你的密码为"+user.getPassword()+"<a href=\"" +link+" \">"+"点击去登录"+"</a>";
+		SendJMail.sendMail("15989566325@163.com", html);
 	}
 
 }

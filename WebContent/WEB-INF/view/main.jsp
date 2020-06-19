@@ -5,8 +5,13 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+<title>主页面</title>
 <%@include file="common.jsp" %>
+<script type="text/javascript">
+	$(function() {
+		$("#birthday").datepicker({dateFormat:'yy-mm-dd'});
+	});
+</script>
 <script type="text/javascript">
 	function loginout() {
 		var flag=confirm("你确定要退出吗");
@@ -55,6 +60,9 @@
         <form class="navbar-form navbar-left" role="search" action="findName">
             <div class="form-group">
                 <input type="text" class="form-control" placeholder="请输入用户名" name="name">
+            </div>
+             <div class="form-group">
+                <input type="text" class="form-control" placeholder="请选择日期" name="birthday" id="birthday">
             </div>
             <button type="submit" class="btn btn-default">点击查询</button>
         </form>

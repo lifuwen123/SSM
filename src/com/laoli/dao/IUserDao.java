@@ -33,7 +33,7 @@ public interface IUserDao {
 	//查询商品条数
 	int selectCount();
 	//模糊查询
-	List<User> findByUnclare(@Param("name") String uname);
+	List<User> findByUnclare(@Param("name") String uname,@Param("birthday") String birthday);
 	//保存日志
 	void saveLog(VisitLog visitLog);
 	//查找日志

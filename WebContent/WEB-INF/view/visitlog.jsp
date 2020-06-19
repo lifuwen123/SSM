@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+<title>日志管理</title>
 <%@include file="common.jsp"%>
 <script type="text/javascript">
 	function deleLog(id) {
