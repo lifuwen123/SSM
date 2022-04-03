@@ -10,6 +10,14 @@
 ![图片](https://user-images.githubusercontent.com/58348278/161406604-bacbe357-b442-4be3-a77e-f5b348d76a0b.png)  
 #### 图三:
 ![图片](https://user-images.githubusercontent.com/58348278/161406765-9a67a2cf-3f90-4b85-ba41-494f664583e0.png)  
+#### 图四:  
+![图片](https://user-images.githubusercontent.com/58348278/161406817-32780b26-aa0d-4fbc-985c-d6a1648f2d77.png)  
+#### 图五: 
+![图片](https://user-images.githubusercontent.com/58348278/161406850-dd77ff8b-604a-4b92-a232-89f1064899d1.png)  
+#### 图六:  
+![1](https://user-images.githubusercontent.com/58348278/161406937-b62d1556-79f8-4e99-9c2c-87ed89107b5c.PNG)
+
+
  
 
 
