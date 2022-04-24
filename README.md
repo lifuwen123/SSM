@@ -15,11 +15,14 @@
 ![图片](https://user-images.githubusercontent.com/58348278/161406817-32780b26-aa0d-4fbc-985c-d6a1648f2d77.png)  
 #### 图五: 
 ![图片](https://user-images.githubusercontent.com/58348278/161406850-dd77ff8b-604a-4b92-a232-89f1064899d1.png)  
-#### 图六:  
-![1](https://user-images.githubusercontent.com/58348278/161406937-b62d1556-79f8-4e99-9c2c-87ed89107b5c.PNG)  
+
+# 图六:  
+###![161406937-b62d1556-79f8-4e99-9c2c-87ed89107b5c](https://user-images.githubusercontent.com/58348278/164973179-def0f890-2d32-4eab-a198-4e3ce018bab3.PNG)
+
 ## 情况说明:
 该项目写于2020年5月,由于时间和技术选型原因,此项目暂停更新，后续会使用热门框架如Springboot,Mybatis-Plus等重新对项目进行编写，部署，或者上线等  
-另外还有一个宠物诊所系统，希望这两个项目可以作为小白入手，多多得到你们的支持。  
+另外还有一个宠物诊所系统，希望这两个项目可以作为小白入手，多多得到你们的支持。 
+
 #### 期待后续可以做出更大更完美的系统.....
 
 
